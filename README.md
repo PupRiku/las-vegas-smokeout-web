@@ -41,7 +41,7 @@ Follow these instructions to set up a local development environment.
 1.  **Clone the repository:**
 
     ```bash
-    git clone [https://github.com/](https://github.com/)PupRiku/las-vegas-smokeout-web.git
+    git clone https://github.com/PupRiku/las-vegas-smokeout-web.git
     cd las-vegas-smokeout-web
     ```
 
