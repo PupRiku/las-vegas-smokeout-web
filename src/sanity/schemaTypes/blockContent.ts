@@ -31,8 +31,10 @@ export default defineType({
         decorators: [
           { title: 'Strong', value: 'strong' },
           { title: 'Emphasis', value: 'em' },
-          { title: 'Underline', value: 'underline' }, // Optional: Add underline
-          { title: 'Strike', value: 'strike-through' }, // Optional: Add strikethrough
+          { title: 'Underline', value: 'underline' },
+          { title: 'Strike', value: 'strike-through' },
+          { title: 'Subscript', value: 'sub' },
+          { title: 'Superscript', value: 'sup' },
         ],
         // Annotations can be any object structure – e.g. links or internal references.
         annotations: [
