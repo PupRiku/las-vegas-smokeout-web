@@ -15,6 +15,8 @@ import blockContent from '@/sanity/schemaTypes/blockContent';
 import siteSettings from '@/sanity/schemaTypes/siteSettings';
 import homePage from '@/sanity/schemaTypes/homePage';
 import registrationPage from '@/sanity/schemaTypes/registrationPage';
+import hostHotelPage from '@/sanity/schemaTypes/hostHotelPage';
+import roomRateRow from '@/sanity/schemaTypes/roomRateRow';
 
 /**
  * Custom Desk Structure Resolver
@@ -24,6 +26,16 @@ export const structure: StructureResolver = (S) =>
   S.list()
     .title('Content Management')
     .items([
+      S.listItem()
+        .title('Host Hotel Page')
+        .id('hostHotelPage')
+        .icon(hostHotelPage.icon) // Optional: use icon from schema
+        .child(
+          S.document()
+            .schemaType('hostHotelPage')
+            .documentId('hostHotelPage')
+            .title('Host Hotel Page Content')
+        ),
       S.listItem()
         .title('Registration Page')
         .id('registrationPage')
@@ -61,9 +73,12 @@ export const structure: StructureResolver = (S) =>
       // but filter out the one we handled manually ('siteSettings')
       ...S.documentTypeListItems().filter(
         (listItem) =>
-          !['siteSettings', 'homePage', 'registrationPage'].includes(
-            listItem.getId() || ''
-          )
+          ![
+            'siteSettings',
+            'homePage',
+            'registrationPage',
+            'hostHotelPage',
+          ].includes(listItem.getId() || '')
       ),
     ]);
 
@@ -73,7 +88,14 @@ export default defineConfig({
   dataset,
   // Add and edit the content schema in the './sanity/schemaTypes' folder
   schema: {
-    types: [siteSettings, homePage, registrationPage, blockContent],
+    types: [
+      siteSettings,
+      homePage,
+      registrationPage,
+      hostHotelPage,
+      blockContent,
+      roomRateRow,
+    ],
   },
   plugins: [
     structureTool({ structure }),
