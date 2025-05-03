@@ -1,36 +1,94 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Las Vegas Smokeout Website
+
+This repository contains the source code for the official website of the Las Vegas Smokeout annual event. It's built using modern web technologies for a seamless content management and user experience.
+
+## Description
+
+This project is a full-stack website featuring:
+
+- A **Next.js** frontend for fast, server-rendered pages and a great developer experience.
+- A **Sanity.io** backend providing a flexible, embedded Content Management System (CMS) / Studio for easy event updates.
+- **Tailwind CSS** (if you used it) for utility-first styling.
+- Deployment-ready for platforms like **Vercel**.
+
+## Features
+
+- **Event Schedule:** Dynamically updated list of events, sortable by date/time.
+- **Attendee Galleries:** Browse photos of current and past attendees.
+- **Host Hotel Information:** Details and booking info for the venue.
+- **T-Shirt Showcase:** View current and past T-shirt designs.
+- **Sponsor Display:** Logos and links for event sponsors.
+- **Registration Info:** Details on how to register for the event.
+- **Announcements:** Easily update home page announcements via the CMS.
+
+## Tech Stack
+
+- **Frontend:** [Next.js](https://nextjs.org/) (React Framework)
+- **Backend/CMS:** [Sanity.io](https://www.sanity.io/)
+- **Styling:** [Tailwind CSS](https://tailwindcss.com/) _(Remove if not used)_
+- **Language:** [TypeScript](https://www.typescriptlang.org/)
+
+## Prerequisites
+
+- [Node.js](https://nodejs.org/) (Version 18.x or later recommended)
+- [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
+- A free [Sanity.io](https://www.sanity.io/signup) account
 
 ## Getting Started
 
-First, run the development server:
+Follow these instructions to set up a local development environment.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+1.  **Clone the repository:**
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+    ```bash
+    git clone [https://github.com/](https://github.com/)[your-github-username]/las-vegas-smokeout-web.git
+    cd las-vegas-smokeout-web
+    ```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+2.  **Install dependencies:**
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+    ```bash
+    npm install
+    # or
+    # yarn install
+    ```
 
-## Learn More
+3.  **Set up Sanity.io:**
 
-To learn more about Next.js, take a look at the following resources:
+    - **Connect to your own Sanity project:** This project requires a Sanity backend. If you are setting this up for the first time from the clone, you'll need to link it to your _own_ Sanity project. You can either:
+      - Run `npx sanity@latest init --reconfigure` in the project directory and follow the prompts to create a new project or connect to an existing one.
+      - Or, manually create a project at [manage.sanity.io](https://manage.sanity.io) and update the environment variables.
+    - **Environment Variables:** Create a file named `.env.local` in the project root by copying the example file:
+      ```bash
+      cp .env.local.example .env.local
+      ```
+      Update `.env.local` with your Sanity Project ID and Dataset name:
+      ```plaintext
+      NEXT_PUBLIC_SANITY_PROJECT_ID="YOUR_PROJECT_ID"
+      NEXT_PUBLIC_SANITY_DATASET="production" # Or your dataset name
+      # NEXT_PUBLIC_SANITY_API_VERSION="YYYY-MM-DD" # Optional: Specify API version
+      ```
+    - **Configure CORS:** Go to [manage.sanity.io](https://manage.sanity.io), select your project, navigate to the **API** tab, and add `http://localhost:3000` to the **CORS origins** list (ensure "Allow Credentials" is checked).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+4.  **Run the development server:**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+    ```bash
+    npm run dev
+    # or
+    # yarn dev
+    ```
 
-## Deploy on Vercel
+5.  **Access the application:**
+    - **Website:** Open [http://localhost:3000](http://localhost:3000) in your browser.
+    - **Sanity Studio (CMS):** Open [http://localhost:3000/studio](http://localhost:3000/studio) in your browser. You'll need to log in with your Sanity account.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Deployment
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This Next.js application can be easily deployed to platforms like [Vercel](https://vercel.com/) (recommended) or Netlify. Remember to:
+
+1.  Configure the necessary environment variables (`NEXT_PUBLIC_SANITY_PROJECT_ID`, `NEXT_PUBLIC_SANITY_DATASET`) in your deployment platform's settings.
+2.  Add your production URL(s) to your Sanity project's CORS origins list.
+
+## License
+
+This project is licensed under the **MIT License** - see the [LICENSE](LICENSE.md) file for details.
