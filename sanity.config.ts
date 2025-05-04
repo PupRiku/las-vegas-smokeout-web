@@ -25,6 +25,9 @@ import attendeesPage from '@/sanity/schemaTypes/attendeesPage';
 import attendee from '@/sanity/schemaTypes/attendee';
 import sponsorsPage from '@/sanity/schemaTypes/sponsorsPage';
 import sponsor from '@/sanity/schemaTypes/sponsor';
+import linksPage from '@/sanity/schemaTypes/linksPage';
+import linkCategory from '@/sanity/schemaTypes/linkCategory';
+import link from '@/sanity/schemaTypes/link';
 
 /**
  * Custom Desk Structure Resolver
@@ -34,6 +37,16 @@ export const structure: StructureResolver = (S) =>
   S.list()
     .title('Content Management')
     .items([
+      S.listItem()
+        .title('Links Page')
+        .id('linksPage')
+        .icon(linksPage.icon) // Optional: use icon from schema
+        .child(
+          S.document()
+            .schemaType('linksPage')
+            .documentId('linksPage')
+            .title('Links Page Content')
+        ),
       S.listItem()
         .title('Sponsors Page')
         .id('sponsorsPage')
@@ -130,6 +143,7 @@ export const structure: StructureResolver = (S) =>
             'schedulePage',
             'attendeesPage',
             'sponsorsPage',
+            'linksPage',
           ].includes(listItem.getId() || '')
       ),
     ]);
@@ -153,8 +167,11 @@ export default defineConfig({
       attendee,
       sponsorsPage,
       sponsor,
+      linksPage,
       blockContent,
       roomRateRow,
+      linkCategory,
+      link,
     ],
   },
   plugins: [
