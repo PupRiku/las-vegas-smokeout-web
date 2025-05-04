@@ -32,3 +32,14 @@ export interface HomePageData {
   briefDescription?: PortableTextBlock[];
   announcements?: PortableTextBlock[];
 }
+
+export interface RegistrationPageData {
+  _type: 'registrationPage';
+  _id: string;
+  pageContent?: PortableTextBlock[];
+  registrationOpenDate?: string; // Comes as ISO 8601 string
+  preRegistrationText?: string;
+  registrationUrl?: string;
+  registrationButtonText?: string;
+  openInNewWindow?: boolean;
+}
