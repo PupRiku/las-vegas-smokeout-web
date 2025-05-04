@@ -155,3 +155,33 @@ export interface EventsPageCombinedData {
 export type GroupedEvents = {
   [dateKey: string]: EventItemData[]; // Key is formatted date, value is array of events for that date
 };
+
+export interface AttendeeData {
+  _id: string;
+  _type: 'attendee';
+  name?: string;
+  year?: number;
+  location?: string;
+  attendedCount?: number;
+  caption?: string;
+  photo?: SanityImage & {
+    alt?: string;
+    asset?: {
+      _id?: string;
+      url?: string;
+      metadata?: {
+        dimensions?: { width?: number; height?: number; aspectRatio?: number };
+        lqip?: string;
+      };
+    };
+  };
+}
+
+export interface AttendeesPageData {
+  _type: 'attendeesPage';
+  _id: string;
+  pageTitle?: string;
+  introduction?: PortableTextBlock[];
+  submissionEmail?: string;
+  currentYear?: number;
+}
