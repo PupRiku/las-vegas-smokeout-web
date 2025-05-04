@@ -21,6 +21,8 @@ import tshirtPage from '@/sanity/schemaTypes/tshirtPage';
 import tshirtDesign from '@/sanity/schemaTypes/tshirtDesign';
 import schedulePage from '@/sanity/schemaTypes/schedulePage';
 import eventItem from '@/sanity/schemaTypes/eventItem';
+import attendeesPage from '@/sanity/schemaTypes/attendeesPage';
+import attendee from '@/sanity/schemaTypes/attendee';
 
 /**
  * Custom Desk Structure Resolver
@@ -30,6 +32,16 @@ export const structure: StructureResolver = (S) =>
   S.list()
     .title('Content Management')
     .items([
+      S.listItem()
+        .title('Attendees Page')
+        .id('attendeesPage')
+        .icon(attendeesPage.icon) // Optional: use icon from schema
+        .child(
+          S.document()
+            .schemaType('attendeesPage')
+            .documentId('attendeesPage')
+            .title('Attendees Page Content')
+        ),
       S.listItem()
         .title('Schedule Page')
         .id('schedulePage')
@@ -104,6 +116,7 @@ export const structure: StructureResolver = (S) =>
             'hostHotelPage',
             'tshirtPage',
             'schedulePage',
+            'attendeesPage',
           ].includes(listItem.getId() || '')
       ),
     ]);
@@ -123,6 +136,8 @@ export default defineConfig({
       tshirtDesign,
       schedulePage,
       eventItem,
+      attendeesPage,
+      attendee,
       blockContent,
       roomRateRow,
     ],
