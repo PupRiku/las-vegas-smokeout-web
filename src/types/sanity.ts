@@ -1,4 +1,5 @@
 import type { PortableTextBlock } from '@portabletext/types';
+import type { Image } from 'sanity';
 
 export interface SiteSettings {
   _type: 'siteSettings';
@@ -10,4 +11,24 @@ export interface SiteSettings {
   footerText?: PortableTextBlock[]; // Use PortableTextBlock for block content
 }
 
-// Add other types here as you build pages...
+export interface HomePageData {
+  _type: 'homePage';
+  _id: string;
+  welcomeHeadline?: string;
+  mainImage?: Image & {
+    alt?: string;
+    asset?: {
+      _id?: string;
+      url?: string;
+      metadata?: {
+        dimensions?: {
+          width?: number;
+          height?: number;
+        };
+        lqip?: string;
+      };
+    };
+  };
+  briefDescription?: PortableTextBlock[];
+  announcements?: PortableTextBlock[];
+}
