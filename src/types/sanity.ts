@@ -82,3 +82,37 @@ export interface HostHotelPageData {
   ratesCaption?: string;
   hotelImages?: HotelImage[];
 }
+
+export interface TShirtDesignData {
+  _id: string;
+  _type: 'tshirtDesign';
+  year?: number;
+  description?: string;
+  designImage?: SanityImage & {
+    alt?: string;
+    asset?: {
+      _id?: string;
+      url?: string;
+      metadata?: {
+        dimensions?: { width?: number; height?: number; aspectRatio?: number };
+        lqip?: string;
+      };
+    };
+  };
+}
+
+export interface TShirtPageData {
+  _type: 'tshirtPage';
+  _id: string;
+  pageTitle?: string;
+  introduction?: PortableTextBlock[];
+  orderStartDate?: string;
+  orderEndDate?: string;
+  preOrderText?: string;
+  orderUrl?: string;
+  orderButtonText?: string;
+  postOrderText?: string;
+  openInNewWindow?: boolean;
+  currentDesign?: TShirtDesignData;
+  pastDesigns?: TShirtDesignData[];
+}
