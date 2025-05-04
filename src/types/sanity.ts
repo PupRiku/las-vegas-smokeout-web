@@ -116,3 +116,42 @@ export interface TShirtPageData {
   currentDesign?: TShirtDesignData;
   pastDesigns?: TShirtDesignData[];
 }
+
+export interface SanityFileData {
+  asset?: {
+    url?: string;
+    originalFilename?: string;
+  };
+}
+
+export interface EventItemData {
+  _id: string;
+  _type: 'eventItem';
+  title?: string;
+  startDateTime?: string; // ISO 8601 date string from Sanity
+  endDateTime?: string; // ISO 8601 date string
+  location?: string;
+  description?: PortableTextBlock[];
+  requiresExtraCost?: boolean;
+  costDetails?: string;
+  isOffSite?: boolean;
+  offSiteAddress?: string;
+  organizerContact?: string;
+}
+
+export interface SchedulePageData {
+  _type: 'schedulePage';
+  _id: string;
+  pageTitle?: string;
+  introduction?: PortableTextBlock[];
+  schedulePdf?: SanityFileData;
+}
+
+export interface EventsPageCombinedData {
+  pageData: SchedulePageData | null; // Schedule page data might be null
+  events: EventItemData[]; // Array of events, might be empty
+}
+
+export type GroupedEvents = {
+  [dateKey: string]: EventItemData[]; // Key is formatted date, value is array of events for that date
+};
