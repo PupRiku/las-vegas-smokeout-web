@@ -1,5 +1,5 @@
 import type { PortableTextBlock } from '@portabletext/types';
-import type { Image } from 'sanity';
+import type { Image as SanityImage } from 'sanity';
 
 export interface SiteSettings {
   _type: 'siteSettings';
@@ -15,7 +15,7 @@ export interface HomePageData {
   _type: 'homePage';
   _id: string;
   welcomeHeadline?: string;
-  mainImage?: Image & {
+  mainImage?: SanityImage & {
     alt?: string;
     asset?: {
       _id?: string;
@@ -42,4 +42,43 @@ export interface RegistrationPageData {
   registrationUrl?: string;
   registrationButtonText?: string;
   openInNewWindow?: boolean;
+}
+
+export interface RoomRateRow {
+  _key: string;
+  roomType?: string;
+  rateMonThruThurs?: string;
+  rateFriday?: string;
+  rateSaturday?: string;
+  rateSunThruMon?: string;
+}
+
+export interface HotelImage {
+  _key: string;
+  alt?: string;
+  caption?: string;
+  // Expand asset data based on GROQ query
+  asset?: SanityImage & {
+    // Use base Sanity Image type
+    _id?: string;
+    url?: string;
+    metadata?: {
+      dimensions?: {
+        width?: number;
+        height?: number;
+        aspectRatio?: number;
+      };
+      lqip?: string; // Low Quality Image Placeholder
+    };
+  };
+}
+
+export interface HostHotelPageData {
+  _type: 'hostHotelPage';
+  _id: string;
+  pageTitle?: string;
+  introduction?: PortableTextBlock[];
+  roomRates?: RoomRateRow[];
+  ratesCaption?: string;
+  hotelImages?: HotelImage[];
 }
