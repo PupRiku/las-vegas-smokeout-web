@@ -185,3 +185,34 @@ export interface AttendeesPageData {
   submissionEmail?: string;
   currentYear?: number;
 }
+
+export interface SponsorData {
+  _id: string;
+  _type: 'sponsor';
+  name?: string;
+  websiteUrl?: string;
+  sponsorLevel?: string;
+  logo?: SanityImage & {
+    alt?: string;
+    asset?: {
+      _id?: string;
+      url?: string;
+      metadata?: {
+        dimensions?: { width?: number; height?: number; aspectRatio?: number };
+        lqip?: string;
+      };
+    };
+  };
+}
+
+export interface SponsorsPageInfo {
+  _type: 'sponsorsPage';
+  _id: string;
+  pageTitle?: string;
+  introduction?: PortableTextBlock[];
+}
+
+export interface SponsorsPageCombinedData {
+  pageData: SponsorsPageInfo | null;
+  sponsors: SponsorData[];
+}
