@@ -216,3 +216,24 @@ export interface SponsorsPageCombinedData {
   pageData: SponsorsPageInfo | null;
   sponsors: SponsorData[];
 }
+
+export interface LinkData {
+  _key: string; // Required for React lists
+  title?: string;
+  url?: string;
+  description?: string;
+}
+
+export interface LinkCategoryData {
+  _key: string; // Required for React lists
+  categoryTitle?: string;
+  links?: LinkData[]; // Array of LinkData objects
+}
+
+export interface LinksPageData {
+  _type: 'linksPage';
+  _id: string;
+  pageTitle?: string;
+  introduction?: PortableTextBlock[];
+  linkCategories?: LinkCategoryData[]; // Array of LinkCategoryData objects
+}
